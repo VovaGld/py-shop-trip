@@ -52,7 +52,7 @@ def shop_trip() -> None:
                 price = quantity * min_cost_shop[0].products[product]
                 formate_price = f"{int(price)}" \
                     if price == int(price) else f"{price}"
-                print(f"{quantity} {product + "s"} "
+                print(f"{quantity} {product + 's'} "
                       f"for {formate_price} dollars")
             print(
                 f"Total cost is "
