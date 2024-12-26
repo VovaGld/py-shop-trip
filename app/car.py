@@ -9,7 +9,10 @@ class Car:
 
     @classmethod
     def create_car(cls, car_info: dict) -> Car:
-        return cls(car_info["brand"], car_info["fuel_consumption"])
+        try:
+            return cls(car_info["brand"], car_info["fuel_consumption"])
+        except KeyError as e:
+            print(e, "not exist")
 
     def calculate_cost_one_way(
         self, fuel_price: float, home_location: list, shop_location: list

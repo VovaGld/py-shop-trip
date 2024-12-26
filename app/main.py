@@ -9,16 +9,28 @@ def shop_trip() -> None:
     _path = path.join("app", "config.json")
     with open(_path, "r") as file:
         data_from_file = json.load(file)
-        fuel_price = data_from_file["FUEL_PRICE"]
+        try:
 
-        customers_list = [
-            Customer.create_customer(customer)
-            for customer in data_from_file["customers"]
-        ]
+            fuel_price = data_from_file["FUEL_PRICE"]
 
-        shops_list = [
-            Shop.create_shop(shop) for shop in data_from_file["shops"]
-        ]
+        except KeyError as e:
+            print(e, "not exist")
+
+        try:
+            customers_list = [
+                Customer.create_customer(customer)
+                for customer in data_from_file["customers"]
+            ]
+        except KeyError as e:
+            print(e, "not exist")
+
+        try:
+            shops_list = [
+                Shop.create_shop(shop)
+                for shop in data_from_file["shops"]
+            ]
+        except KeyError as e:
+            print(e, "not exist")
 
     for customer in customers_list:
         calculate_cost_for_every_shop = {

@@ -15,13 +15,16 @@ class Customer:
 
     @classmethod
     def create_customer(cls, customer_info: dict) -> Customer:
-        return cls(
-            customer_info["name"],
-            customer_info["product_cart"],
-            customer_info["location"],
-            customer_info["money"],
-            Car.create_car(customer_info["car"]),
-        )
+        try:
+            return cls(
+                customer_info["name"],
+                customer_info["product_cart"],
+                customer_info["location"],
+                customer_info["money"],
+                Car.create_car(customer_info["car"]),
+            )
+        except KeyError as e:
+            print(e, "not exist")
 
     @property
     def name(self) -> str:

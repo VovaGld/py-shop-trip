@@ -11,11 +11,14 @@ class Shop:
 
     @classmethod
     def create_shop(cls, shop_info: dict) -> Shop:
-        return cls(
-            shop_info["name"],
-            shop_info["location"],
-            shop_info["products"]
-        )
+        try:
+            return cls(
+                shop_info["name"],
+                shop_info["location"],
+                shop_info["products"]
+            )
+        except KeyError as e:
+            print(e, "not exist")
 
     @property
     def name(self) -> str:
